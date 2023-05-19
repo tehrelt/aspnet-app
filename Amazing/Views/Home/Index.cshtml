@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Amazing.ViewModels.UserViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+
+}
+
+@*<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Имя пользователя</th>
+            <th scope="col">Эл. почта</th>
+            <th scope="col">Количество постов</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var user in Model) 
+{  
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@user.PostsCount</td>
+        </tr>
+} 
+    </tbody>
+</table>*@
+
+@{ int i = 0; }
+@foreach (var user in Model) 
+{
+    @if (i % 3 == 0)
+    {
+        @Html.Raw("<div class=\"d-flex justify-content-around mb-3\">")
+    }
+
+
+    <div class="card" style="width: 18rem;">
+      <img src="data:image;base64,@System.Convert.ToBase64String(user.Avatar)" class="card-img-top" alt="avatar">
+      <div class="card-body">
+        <h5 class="card-title">@user.UserName</h5>
+        <p class="card-text">@user.Email</p>
+      </div>
+    </div>
+
+    @if (i % 3 == 2)
+    {
+        @Html.Raw("</div>")
+    }
+    { i++; }
+} 
